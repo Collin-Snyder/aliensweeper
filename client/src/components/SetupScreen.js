@@ -12,6 +12,10 @@ const SetupScreen = ({ startGame }) => {
     setMineCount(e.target.value);
   };
 
+  const submitGameInfo = () => {
+    startGame(boardSize, mineCount);
+  };
+
   return (
     <div className="setup">
       <div className="formContainer">
@@ -38,7 +42,7 @@ const SetupScreen = ({ startGame }) => {
             onChange={handleMineChange}
           />
           <br></br>
-          <input type="submit" onClick={startGame} />
+          <input type="submit" onClick={submitGameInfo} />
         </form>
       </div>
     </div>

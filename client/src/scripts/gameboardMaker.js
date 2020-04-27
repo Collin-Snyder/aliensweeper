@@ -1,9 +1,9 @@
 class Gameboard {
-  constructor(width, height, mineCount) {
+  constructor(size, mineCount) {
     this.squares = [];
-    this.squareCount = width * height;
-    this.width = width;
-    this.height = height;
+    this.squareCount = size * size;
+    this.width = size;
+    this.height = size;
     this.mines = [];
 
     for (let s = 1; s <= this.squareCount; s++) {
@@ -25,7 +25,7 @@ class Gameboard {
 
     this.squares.forEach((square) => {
       this.addDiagonals(square);
-    })
+    });
 
     for (let m = 1; m <= mineCount; m++) {
       let newMine;
@@ -74,21 +74,13 @@ class Gameboard {
 
   addDiagonals(square) {
     if (square.borders.up) {
-      square.borders.upleft = square.borders.up.borders.left
-        ? square.borders.up.borders.left
-        : null;
-      square.borders.upright = square.borders.up.borders.right
-        ? square.borders.up.borders.right
-        : null;
+      square.borders.upleft = square.borders.up.borders.left ?? null;
+      square.borders.upright = square.borders.up.borders.right ?? null;
     }
 
     if (square.borders.down) {
-      square.borders.downleft = square.borders.down.borders.left
-        ? square.borders.down.borders.left
-        : null;
-      square.borders.downright = square.borders.down.borders.right
-        ? square.borders.down.borders.right
-        : null;
+      square.borders.downleft = square.borders.down.borders.left ?? null;
+      square.borders.downright = square.borders.down.borders.right ?? null;
     }
 
     return square;
