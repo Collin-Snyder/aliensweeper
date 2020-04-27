@@ -3,15 +3,16 @@ import "./styles/main.css";
 import GameplayScreen from "./components/GameplayScreen";
 import SetupScreen from "./components/SetupScreen";
 import { GameContext } from "./state/gameContext";
-import { Gameboard } from "./scripts/gameboardMaker";
+import Gameboard from "./scripts/gameboardMaker";
 
-const board;
+let board;
 
 const App = () => {
   const [gameState, dispatch] = useContext(GameContext);
   const [screen, setScreen] = useState("setup");
 
   const startGame = (boardSize, mineCount) => {
+    console.log("startGame running")
     board = new Gameboard(boardSize, mineCount);
     dispatch({
       type: "CREATE_BOARD",

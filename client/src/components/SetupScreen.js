@@ -19,7 +19,7 @@ const SetupScreen = ({ startGame }) => {
   return (
     <div className="setup">
       <div className="formContainer">
-        <form className="setupForm" name="setup">
+        <form className="setupForm" name="setup" action="#">
           <label htmlFor="size">Board Side Length: </label>
           <input
             type="number"
@@ -42,8 +42,9 @@ const SetupScreen = ({ startGame }) => {
             onChange={handleMineChange}
           />
           <br></br>
-          <input type="submit" onClick={submitGameInfo} />
+          
         </form>
+        <button onClick={submitGameInfo}>Start Game</button> 
       </div>
     </div>
   );

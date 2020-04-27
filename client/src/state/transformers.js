@@ -1,10 +1,10 @@
 export const transformers = {
-  CREATE_BOARD: createBoardTransformer,
+  CREATE_BOARD: createBoard,
   __default__: (state) => state,
 };
 
-const createBoardTransformer = (state, action) => {
+const createBoard = (state, action) => {
   let newState = { ...state };
-  newState.board = action.payload;
+  newState.squares = action.payload;
   return newState;
 };

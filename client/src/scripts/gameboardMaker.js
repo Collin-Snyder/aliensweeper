@@ -89,8 +89,8 @@ class Gameboard {
   addMine(mine) {
     this.set(mine, "mine", true);
     let mineSquare = this.get(mine);
-    mineSquare.borders.values.forEach((border) => {
-      border.borderMines++;
+    Object.values(mineSquare.borders).forEach((border) => {
+      if (border) border.borderMines++;
     });
   }
 

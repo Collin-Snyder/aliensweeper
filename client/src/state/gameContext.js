@@ -4,7 +4,7 @@ import { transformers } from "./transformers";
 export const GameContext = createContext();
 
 const initialState = {
-  board: [],
+  squares: [],
   mineCount: 0,
   minesLeft: 0,
 };
