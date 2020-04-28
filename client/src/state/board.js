@@ -8,11 +8,11 @@ export const makeBoard = (size, mineCount) => {
 };
 
 export const clickSquare = (squareId) => {
-  board.click(squareId);
-  return board.squares;
+  let flagIncrement = board.click(squareId);
+  return { flagIncrement, squares: board.squares };
 };
 
 export const flagSquare = (squareId) => {
-  let mineIncrement = board.flag(squareId);
-  return { mineIncrement, squares: board.squares };
+  let flagIncrement = board.flag(squareId);
+  return { flagIncrement, squares: board.squares };
 };

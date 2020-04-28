@@ -4,8 +4,6 @@ import GameHeader from "./GameHeader";
 import { GameContext } from "../state/gameContext";
 
 const GameplayScreen = () => {
-  const [gameState, dispatch] = useContext(GameContext);
-
   return (
     <div className="gameplay">
       <GameHeader />

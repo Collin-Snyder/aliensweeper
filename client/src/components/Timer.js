@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useInterval } from "../scripts/customHooks";
 
 const Timer = () => {

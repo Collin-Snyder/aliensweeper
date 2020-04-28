@@ -1,12 +1,11 @@
-import { reveal } from "./gameplay";
-
 class Gameboard {
   constructor(size, mineCount) {
     this.squares = [];
     this.squareCount = size * size;
     this.width = size;
     this.height = size;
-    this.mines = [];
+    this.mineCount = mineCount;
+    this.mines = {};
 
     for (let s = 1; s <= this.squareCount; s++) {
       this.squares.push({
@@ -35,19 +34,23 @@ class Gameboard {
       let newMine;
       do {
         newMine = Math.floor(Math.random() * (this.squareCount - 1)) + 1;
-      } while (this.mines.includes(newMine));
-      this.mines.push(newMine);
+      } while (this.mines.hasOwnProperty(newMine));
+      this.mines[newMine] = "armed";
     }
 
-    this.mines.forEach((mine) => {
+    Object.keys(this.mines).forEach((mine) => {
       this.addMine(mine);
     });
 
-    this.get = this.get.bind(this);
-    this.set = this.set.bind(this);
     this.addBorders = this.addBorders.bind(this);
     this.addDiagonals = this.addDiagonals.bind(this);
-  }
+    this.addMine = this.addMine.bind(this);
+    this.get = this.get.bind(this);
+    this.set = this.set.bind(this);
+    this.click = this.click.bind(this);
+    this.flag = this.flag.bind(this);
+    this.reveal = this.reveal.bind(this);
+   }
 
   addBorders(square) {
     square.borders = {
@@ -119,16 +122,34 @@ class Gameboard {
     let square = this.get(s);
     if (square.mine) {
       this.revealAll();
-      return "mine";
+      return null;
     }
-    reveal(square);
-    return "safe";
+    let flagIncrement = this.reveal(square, 0);
+    return flagIncrement;
   }
 
   flag(s) {
     let square = this.get(s);
     square.flagged = !square.flagged;
+    if (this.mines[square.id])
+      this.mines[square.id] = square.flagged ? "flagged" : "armed";
     return square.flagged ? -1 : 1;
+  }
+
+  reveal(s, flagIncrement) {
+    if (!s.visible) {
+      s.visible = true;
+      if (s.flagged) flagIncrement += this.flag(s.id);
+      if (s.borderMines > 0) return flagIncrement;
+      for (let border in s.borders) {
+        if (s.borders[border]) flagIncrement = this.reveal(s.borders[border], flagIncrement);
+      }
+    }
+    return flagIncrement;
+  }
+
+  checkForWin() {
+    return Object.values(this.mines).filter((m) => m === "armed").length === 0;
   }
 
   revealAll() {

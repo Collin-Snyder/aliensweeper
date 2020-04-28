@@ -7,14 +7,16 @@ const Board = memo(() => {
   const [gameState, dispatch] = useContext(GameContext);
 
   const handleClick = (e) => {
-    let squares = clickSquare(e.currentTarget.id);
+    let { flagIncrement, squares } = clickSquare(e.currentTarget.id);
+    if (flagIncrement)
+      dispatch({ type: "SET_MINES_LEFT", payload: flagIncrement });
     dispatch({ type: "UPDATE_BOARD", payload: squares });
   };
 
   const handleFlag = (e) => {
     e.preventDefault();
-    let { mineIncrement, squares } = flagSquare(e.currentTarget.id);
-    dispatch({ type: "SET_MINES_LEFT", payload: mineIncrement });
+    let { flagIncrement, squares } = flagSquare(e.currentTarget.id);
+    dispatch({ type: "SET_MINES_LEFT", payload: flagIncrement });
     dispatch({ type: "UPDATE_BOARD", payload: squares });
   };
 

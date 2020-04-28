@@ -7,6 +7,7 @@ const initialState = {
   squares: [],
   mineCount: 0,
   minesLeft: 0,
+  gameOutcome: "pending"
 };
 
 const reducer = (state = initialState, action) => {
