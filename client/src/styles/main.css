@@ -1,11 +1,86 @@
 body {
-    background-color: #36454f;
+  background-color: #000;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
 }
 
 h1 {
-    color: #fff;
+  color: #fff;
+}
+
+.app, .gameplay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  /* width: 35vw;
+  height: 35vw; */
+}
+
+.gameHeader {
+  width: 35vw;
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 2vw;
+}
+
+.square,
+.headerItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid greenyellow;
+  cursor: pointer;
+  background-color: rgb(64, 94, 19);
 }
 
 .square {
-    border: 1px solid gray;
+    width: 3.5vw;
+    height: 3.5vw;
+    position: relative;
 }
+
+.mine {
+  color: red;
+}
+
+.tile {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.tile.cover {
+  background-color: black;
+}
+
+.tile.flag {
+  background-color: rgb(89, 0, 0);
+}
+
+.headerItem {
+  background-color: black;
+  height: 2.5vw;
+}
+
+.headerItem.timer {
+    width: 10vw;
+}
+
+.headerItem.smiley {
+    width: 5vw;
+    font-size: 2em;
+}
+
+.headerItem.mineCount {
+    width: 10vw;
+}
+

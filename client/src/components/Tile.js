@@ -1,7 +1,7 @@
 import React from "react";
 
-const Tile = () => {
-  return <div>T</div>;
+const Tile = ({ type }) => {
+  return <div className={`tile ${type}`}></div>;
 };
 
 export default Tile;

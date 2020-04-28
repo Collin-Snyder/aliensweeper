@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  const transformer = transformers[action.type] ?? transformers.__default__;
+  let transformer = transformers[action.type] ?? transformers.__default__;
   return transformer(state, action);
 };
 

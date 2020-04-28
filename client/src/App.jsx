@@ -3,20 +3,26 @@ import "./styles/main.css";
 import GameplayScreen from "./components/GameplayScreen";
 import SetupScreen from "./components/SetupScreen";
 import { GameContext } from "./state/gameContext";
-import Gameboard from "./scripts/gameboardMaker";
-
-let board;
+import { makeBoard } from "./state/board";
 
 const App = () => {
   const [gameState, dispatch] = useContext(GameContext);
   const [screen, setScreen] = useState("setup");
 
   const startGame = (boardSize, mineCount) => {
-    console.log("startGame running")
-    board = new Gameboard(boardSize, mineCount);
+    console.log("startGame running");
+    let squares = makeBoard(boardSize, mineCount);
     dispatch({
-      type: "CREATE_BOARD",
-      payload: board.squares
+      type: "UPDATE_BOARD",
+      payload: squares,
+    });
+    dispatch({
+      type: "SET_MINE_COUNT",
+      payload: mineCount,
+    });
+    dispatch({
+      type: "SET_MINES_LEFT",
+      payload: mineCount,
     });
     setScreen("gameplay");
   };

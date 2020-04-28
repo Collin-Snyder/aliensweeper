@@ -1,3 +1,5 @@
+import { reveal } from "./gameplay";
+
 class Gameboard {
   constructor(size, mineCount) {
     this.squares = [];
@@ -16,6 +18,8 @@ class Gameboard {
             : this.width,
         mine: false,
         borderMines: 0,
+        visible: false,
+        flagged: false,
       });
     }
 
@@ -109,6 +113,28 @@ class Gameboard {
     }
     this.squares[s - 1][key] = val;
     return this.squares[s - 1];
+  }
+
+  click(s) {
+    let square = this.get(s);
+    if (square.mine) {
+      this.revealAll();
+      return "mine";
+    }
+    reveal(square);
+    return "safe";
+  }
+
+  flag(s) {
+    let square = this.get(s);
+    square.flagged = !square.flagged;
+    return square.flagged ? -1 : 1;
+  }
+
+  revealAll() {
+    this.squares.forEach((square) => {
+      square.visible = true;
+    });
   }
 }
 

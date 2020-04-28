@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { GameContext } from "../state/gameContext";
+import Timer from "./Timer";
 
-const GameHeader = ({ timer }) => {
+const GameHeader = () => {
   const [gameState, dispatch] = useContext(GameContext);
   return (
     <div className="gameHeader" style={{ display: "flex" }}>
-      <div className="mineCount">{gameState.minesLeft}</div>
-      <div className="smiley">☺︎</div>
-      <div className="timer">{timer}</div>
+      <div className="headerItem mineCount">{gameState.minesLeft}</div>
+      <div className="headerItem smiley">☺︎</div>
+      <Timer/>
     </div>
   );
 };
