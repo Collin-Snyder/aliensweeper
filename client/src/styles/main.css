@@ -86,14 +86,32 @@ h1 {
 }
 
 .modalBackground {
+  z-index: 100;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.modalContent {
+  width: 30vw;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+}
+
+.winh1 {
+  font-size: 3em;
+}
+.winh2 {
+  font-size: 2em;
 }
 

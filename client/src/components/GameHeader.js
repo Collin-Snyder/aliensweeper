@@ -4,7 +4,7 @@ import Timer from "./Timer";
 import Smiley from "./Smiley";
 
 const GameHeader = () => {
-  const [gameState, dispatch] = useContext(GameContext);
+  const [gameState] = useContext(GameContext);
 
   return (
     <div className="gameHeader" style={{ display: "flex" }}>

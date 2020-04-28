@@ -34,17 +34,10 @@ const setGameOutcome = (state, action) => {
   return newState;
 };
 
-const incrementTimer = (state, action) => {
-  let newState = { ...state };
-  newState.timer++;
-  return newState;
-};
-
 const reset = (state, action) => {
   let newState = { ...state };
   newState.squares = [];
   newState.gameOutcome = "pending";
-  newState.timer = 0;
   return newState;
 };
 
@@ -55,7 +48,6 @@ export const transformers = {
   INCREMENT_MINES_LEFT: incrementMinesLeft,
   SET_MINES_LEFT: setMinesLeft,
   SET_GAME_OUTCOME: setGameOutcome,
-  INCREMENT_TIMER: incrementTimer,
   RESET: reset,
   __default__: (state) => state,
 };
