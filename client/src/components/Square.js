@@ -9,12 +9,15 @@ const Square = memo(
     visible,
     flagged,
     boardSize,
+    loss,
     handleClick,
     handleFlag,
   }) => {
     return (
       <div
-        className={`square ${mine ? "mine" : ""} ${visible ? "visible" : ""}`}
+        className={`square ${mine ? "mine" : ""} ${visible ? "visible" : ""} ${
+          loss ? "loss" : ""
+        }`}
         id={id}
         onClick={handleClick}
         onContextMenu={handleFlag}
@@ -31,7 +34,7 @@ const Square = memo(
         ) : flagged ? (
           <>
             <Tile type="cover" />
-            <Tile type="flag" boardSize={boardSize}/>
+            <Tile type="flag" boardSize={boardSize} />
           </>
         ) : (
           <Tile type="cover" />

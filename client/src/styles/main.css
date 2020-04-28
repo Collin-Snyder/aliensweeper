@@ -1,3 +1,31 @@
+@keyframes glowBorder {
+  0% {
+    border-color: rgb(213, 117, 0);
+    box-shadow: 0 0 5px rgba(213, 117, 0, 0.2),
+      inset 0 0 5px rgba(213, 117, 0, 0.1), 0 2px 0 #000;
+  }
+  100% {
+    border-color: rgb(255, 140, 0);
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.6),
+      inset 0 0 10px rgba(255, 140, 0, 0.4), 0 2px 0 #000;
+  }
+}
+
+@keyframes glowSquare {
+  0% {
+    /* background-color: rgb(184, 101, 0); */
+    border-color: rgb(255, 140, 0);
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.6),
+      inset 0 0 10px rgba(255, 140, 0, 0.4), 0 2px 0 #000;
+  }
+  100% {
+    /* background-color: rgb(154, 84, 0); */
+    border-color: rgb(213, 117, 0);
+    box-shadow: 0 0 5px rgba(213, 117, 0, 0.2),
+      inset 0 0 5px rgba(213, 117, 0, 0.1), 0 2px 0 #000;
+  }
+}
+
 body {
   background-color: #000;
   color: #fff;
@@ -7,14 +35,16 @@ body {
 h1 {
   color: #fff;
   margin-block-start: 0em;
-    margin-block-end: 0em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
 }
 
 .setup {
-  border: 2px solid darkorange;
+  border: 2px solid rgb(27, 27, 186);
+  box-shadow: 0 0 20px rgba(0, 178, 254, 0.6),
+    inset 0 0 10px rgba(0, 178, 254, 0.4), 0 2px 0 #000;
   border-radius: 5vw;
   padding: 3vw;
 }
@@ -56,39 +86,6 @@ h1 {
   font-size: 4em;
 }
 
-@keyframes glow {
-  0% {
-    border-color: rgb(213, 117, 0);
-    box-shadow: 0 0 5px rgba(213, 117, 0, 0.2),
-      inset 0 0 5px rgba(213, 117, 0, 0.1), 0 2px 0 #000;
-  }
-  100% {
-    border-color: rgb(255, 140, 0);
-    box-shadow: 0 0 20px rgba(255, 140, 0, 0.6),
-      inset 0 0 10px rgba(255, 140, 0, 0.4), 0 2px 0 #000;
-  }
-}
-
-@keyframes fade {
-  0% {
-    opacity: 100%;
-    background-color: black;
-    box-shadow: none;
-  }
-
-  50% {
-    opacity: 100%;
-    background-color: rgb(173, 255, 47);
-    box-shadow: 0 0 20px rgba(173, 255, 47, 0.6),
-      inset 0 0 10px rgba(173, 255, 47, 0.4), 0 2px 0 #000;
-  }
-
-  100% {
-    opacity: 0%;
-    box-shadow: none;
-  }
-}
-
 input {
   height: 3vw;
   width: 12vw;
@@ -106,14 +103,15 @@ input {
 }
 
 input:focus {
-  animation: glow 800ms ease-out infinite alternate;
+  animation: glowBorder 800ms ease-out infinite alternate;
 }
 
 .app,
 .gameplay,
 .button,
 .setupForm,
-.formContainer, .tile {
+.formContainer,
+.tile {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -132,7 +130,7 @@ input:focus {
 }
 
 .headerItem,
-.square{
+.square {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -146,22 +144,20 @@ input:focus {
     inset 0 0 5px rgba(173, 255, 47, 0.4), 0 2px 0 #000;
 }
 
-/* .square.visible {
-  cursor: default;
-  position: relative;
-  background-color: rgb(181, 99, 0);
-  border-color: rgb(255, 140, 0);
-    box-shadow: 0 0 20px rgba(255, 140, 0, 0.6),
-      inset 0 0 10px rgba(255, 140, 0, 0.4), 0 2px 0 #000;
-} */
-
 .square.visible {
   cursor: default;
   position: relative;
+  border: 1px solid rgb(0, 178, 254);
   background-color: rgb(27, 27, 186);
-  border-color: rgb(0, 178, 254);
-    box-shadow: 0 0 20px rgba(0, 178, 254, 0.6),
-      inset 0 0 10px rgba(0, 178, 254, 0.4), 0 2px 0 #000;
+  box-shadow: 0 0 20px rgba(0, 178, 254, 0.6),
+    inset 0 0 10px rgba(0, 178, 254, 0.4), 0 2px 0 #000;
+}
+
+.square.loss.visible {
+  background-color: rgb(184, 101, 0);
+  border: 1px solid rgb(255, 140, 0);
+  box-shadow: 0 0 20px rgba(255, 140, 0, 0.6),
+    inset 0 0 10px rgba(255, 140, 0, 0.4), 0 2px 0 #000;
 }
 
 .square.mine.visible {
@@ -188,20 +184,16 @@ input:focus {
   border: 1px solid greenyellow;
   box-shadow: 0 0 5px rgba(173, 255, 47, 0.6),
     inset 0 0 5px rgba(173, 255, 47, 0.4), 0 2px 0 #000;
-  /* animation: fade 500ms ease;
-  animation-fill-mode: both; */
 }
 
 .tile.flag {
-  /* background-color: rgb(89, 0, 0); */
   background-color: black;
   border: 1px solid red;
   box-shadow: 0 0 5px rgba(255, 0, 0, 0.6), inset 0 0 5px rgba(255, 0, 0, 0.4),
     0 2px 0 #000;
-    font-size: 2vw;
-    color: red;
-    z-index: 11;
-
+  font-size: 2vw;
+  color: red;
+  z-index: 11;
 }
 
 .headerItem {
