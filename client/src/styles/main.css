@@ -47,7 +47,8 @@ h1 {
 }
 
 .mine {
-  color: red;
+  color: black;
+  background-color: rgb(142, 0, 0);
 }
 
 .tile {

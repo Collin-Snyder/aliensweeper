@@ -8,15 +8,17 @@ const Board = memo(() => {
 
   const handleClick = (e) => {
     let { flagIncrement, squares } = clickSquare(e.currentTarget.id);
-    if (flagIncrement)
-      dispatch({ type: "SET_MINES_LEFT", payload: flagIncrement });
     dispatch({ type: "UPDATE_BOARD", payload: squares });
+    if (flagIncrement)
+      dispatch({ type: "INCREMENT_MINES_LEFT", payload: flagIncrement });
+    else if (flagIncrement === null)
+      dispatch({ type: "SET_GAME_OUTCOME", payload: "loss" });
   };
 
   const handleFlag = (e) => {
     e.preventDefault();
     let { flagIncrement, squares } = flagSquare(e.currentTarget.id);
-    dispatch({ type: "SET_MINES_LEFT", payload: flagIncrement });
+    dispatch({ type: "INCREMENT_MINES_LEFT", payload: flagIncrement });
     dispatch({ type: "UPDATE_BOARD", payload: squares });
   };
 

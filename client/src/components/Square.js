@@ -1,11 +1,11 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import Tile from "./Tile";
 
 const Square = memo(
   ({ id, mine, borderMines, visible, flagged, handleClick, handleFlag }) => {
     return (
       <div
-        className="square"
+        className={`square ${mine ? "mine" : ""}`}
         id={id}
         onClick={handleClick}
         onContextMenu={handleFlag}

@@ -5,9 +5,11 @@ export const GameContext = createContext();
 
 const initialState = {
   squares: [],
+  size: 0,
   mineCount: 0,
   minesLeft: 0,
-  gameOutcome: "pending"
+  gameOutcome: "pending",
+  timer: 0
 };
 
 const reducer = (state = initialState, action) => {

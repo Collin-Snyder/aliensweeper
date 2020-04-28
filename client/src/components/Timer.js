@@ -1,15 +1,18 @@
-import React, { useState } from "react";
-import { useInterval } from "../scripts/customHooks";
+import React, { useState, useContext, useEffect } from "react";
+import { useInterval, usePrev } from "../scripts/customHooks";
+import { GameContext } from "../state/gameContext";
 
 const Timer = () => {
-  const [time, setTime] = useState(0);
+  const [gameState, dispatch] = useContext(GameContext);
+  // const [time, setTime] = useState(0);
 
   useInterval(() => {
-    setTime(time + 1);
+    if (gameState.gameOutcome === "pending")
+      dispatch({ type: "INCREMENT_TIMER" });
   }, 1000);
 
   return (
-    <div className="headerItem timer">{time.toString().padStart(3, "0")}</div>
+    <div className="headerItem timer">{gameState.timer.toString().padStart(3, "0")}</div>
   );
 };
 

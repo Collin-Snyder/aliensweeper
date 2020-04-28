@@ -16,12 +16,13 @@ const App = () => {
       type: "UPDATE_BOARD",
       payload: squares,
     });
+    dispatch({ type: "SET_BOARD_SIZE", payload: boardSize });
     dispatch({
       type: "SET_MINE_COUNT",
       payload: mineCount,
     });
     dispatch({
-      type: "SET_MINES_LEFT",
+      type: "INCREMENT_MINES_LEFT",
       payload: mineCount,
     });
     setScreen("gameplay");
