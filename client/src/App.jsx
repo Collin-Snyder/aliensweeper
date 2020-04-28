@@ -34,7 +34,7 @@ const App = () => {
       {screen === "setup" ? (
         <SetupScreen startGame={startGame} />
       ) : (
-        <GameplayScreen />
+        <GameplayScreen setScreen={setScreen}/>
       )}
     </div>
   );

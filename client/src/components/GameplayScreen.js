@@ -5,12 +5,12 @@ import WinModal from "./WinModal";
 import { GameContext } from "../state/gameContext";
 import { TimerContextProvider } from "../state/timerContext";
 
-const GameplayScreen = () => {
+const GameplayScreen = ({setScreen}) => {
   const [gameState] = useContext(GameContext);
   return (
     <div className="gameplay">
       <TimerContextProvider>
-        {gameState.gameOutcome === "win" ? <WinModal /> : <></>}
+        {gameState.gameOutcome === "win" ? <WinModal setScreen={setScreen}/> : <></>}
         <GameHeader />
       </TimerContextProvider>
       <Board />
