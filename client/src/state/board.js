@@ -9,10 +9,12 @@ export const makeBoard = (size, mineCount) => {
 
 export const clickSquare = (squareId) => {
   let flagIncrement = board.click(squareId);
-  return { flagIncrement, squares: board.squares };
+  let win = board.checkForWin();
+  return { flagIncrement, squares: board.squares, win };
 };
 
 export const flagSquare = (squareId) => {
   let flagIncrement = board.flag(squareId);
-  return { flagIncrement, squares: board.squares };
+  let win = board.checkForWin();
+  return { flagIncrement, squares: board.squares, win };
 };

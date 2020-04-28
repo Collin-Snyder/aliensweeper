@@ -7,19 +7,22 @@ const Board = memo(() => {
   const [gameState, dispatch] = useContext(GameContext);
 
   const handleClick = (e) => {
-    let { flagIncrement, squares } = clickSquare(e.currentTarget.id);
+    let { flagIncrement, squares, win } = clickSquare(e.currentTarget.id);
     dispatch({ type: "UPDATE_BOARD", payload: squares });
     if (flagIncrement)
       dispatch({ type: "INCREMENT_MINES_LEFT", payload: flagIncrement });
     else if (flagIncrement === null)
       dispatch({ type: "SET_GAME_OUTCOME", payload: "loss" });
+
+    if (win) dispatch({ type: "SET_GAME_OUTCOME", payload: "win" });
   };
 
   const handleFlag = (e) => {
     e.preventDefault();
-    let { flagIncrement, squares } = flagSquare(e.currentTarget.id);
-    dispatch({ type: "INCREMENT_MINES_LEFT", payload: flagIncrement });
+    let { flagIncrement, squares, win } = flagSquare(e.currentTarget.id);
     dispatch({ type: "UPDATE_BOARD", payload: squares });
+    dispatch({ type: "INCREMENT_MINES_LEFT", payload: flagIncrement });
+    if (win) dispatch({ type: "SET_GAME_OUTCOME", payload: "win" });
   };
 
   return (
