@@ -1,14 +1,119 @@
 body {
   background-color: #000;
   color: #fff;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 h1 {
   color: #fff;
+  margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
 }
 
-.app, .gameplay {
+.setup {
+  border: 2px solid darkorange;
+  border-radius: 5vw;
+  padding: 3vw;
+}
+
+.setupForm {
+  height: 40vh;
+  font-size: 1.5em;
+  color: greenyellow;
+}
+
+.button {
+  width: 10vw;
+  height: 3vw;
+  padding: 1vh;
+  border: 2px solid greenyellow;
+  border-radius: 5vw;
+  cursor: pointer;
+  margin: 1.5vh auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  font-size: 1.2em;
+}
+
+.button:active,
+.smiley:active {
+  border-color: rgb(255, 140, 0);
+  box-shadow: 0 0 20px rgba(255, 140, 0, 0.6),
+    inset 0 0 10px rgba(255, 140, 0, 0.4), 0 2px 0 #000;
+  /* color: darkorange; */
+}
+
+.gameTitle {
+  font-size: 2.5em;
+  cursor: pointer;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+
+.gameTitle.big {
+  font-size: 4em;
+}
+
+@keyframes glow {
+  0% {
+    border-color: rgb(213, 117, 0);
+    box-shadow: 0 0 5px rgba(213, 117, 0, 0.2),
+      inset 0 0 5px rgba(213, 117, 0, 0.1), 0 2px 0 #000;
+  }
+  100% {
+    border-color: rgb(255, 140, 0);
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.6),
+      inset 0 0 10px rgba(255, 140, 0, 0.4), 0 2px 0 #000;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 100%;
+    background-color: black;
+    box-shadow: none;
+  }
+
+  50% {
+    opacity: 100%;
+    background-color: rgb(173, 255, 47);
+    box-shadow: 0 0 20px rgba(173, 255, 47, 0.6),
+      inset 0 0 10px rgba(173, 255, 47, 0.4), 0 2px 0 #000;
+  }
+
+  100% {
+    opacity: 0%;
+    box-shadow: none;
+  }
+}
+
+input {
+  height: 3vw;
+  width: 12vw;
+  font-size: 1em;
+  text-align: center;
+  background-color: black;
+  color: white;
+  border-radius: 5vw;
+  border-style: solid;
+  border-width: 2px;
+  border-color: greenyellow;
+  border-image: none;
+  outline: none;
+  margin-top: 2vh;
+}
+
+input:focus {
+  animation: glow 800ms ease-out infinite alternate;
+}
+
+.app,
+.gameplay,
+.button,
+.setupForm,
+.formContainer, .tile {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,59 +131,100 @@ h1 {
   padding-bottom: 2vw;
 }
 
-.square,
-.headerItem {
+.headerItem,
+.square{
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.headerItem {
   border: 1px solid greenyellow;
-  cursor: pointer;
   background-color: rgb(64, 94, 19);
+  box-shadow: 0 0 5px rgba(173, 255, 47, 0.6),
+    inset 0 0 5px rgba(173, 255, 47, 0.4), 0 2px 0 #000;
 }
 
-.square {
-    /* width: 3.5vw;
-    height: 3.5vw; */
-    position: relative;
+/* .square.visible {
+  cursor: default;
+  position: relative;
+  background-color: rgb(181, 99, 0);
+  border-color: rgb(255, 140, 0);
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.6),
+      inset 0 0 10px rgba(255, 140, 0, 0.4), 0 2px 0 #000;
+} */
+
+.square.visible {
+  cursor: default;
+  position: relative;
+  background-color: rgb(27, 27, 186);
+  border-color: rgb(0, 178, 254);
+    box-shadow: 0 0 20px rgba(0, 178, 254, 0.6),
+      inset 0 0 10px rgba(0, 178, 254, 0.4), 0 2px 0 #000;
 }
 
-.mine {
-  color: black;
-  background-color: rgb(142, 0, 0);
+.square.mine.visible {
+  color: rgb(206, 0, 0);
+  background-color: black;
+  border: 1px solid red;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.6), inset 0 0 5px rgba(255, 0, 0, 0.4),
+    0 2px 0 #000;
 }
 
 .tile {
   height: 100%;
   width: 100%;
   position: absolute;
+  cursor: pointer;
   top: 0;
   left: 0;
+  z-index: 10;
 }
 
 .tile.cover {
   background-color: black;
+  opacity: 100%;
+  border: 1px solid greenyellow;
+  box-shadow: 0 0 5px rgba(173, 255, 47, 0.6),
+    inset 0 0 5px rgba(173, 255, 47, 0.4), 0 2px 0 #000;
+  /* animation: fade 500ms ease;
+  animation-fill-mode: both; */
 }
 
 .tile.flag {
-  background-color: rgb(89, 0, 0);
+  /* background-color: rgb(89, 0, 0); */
+  background-color: black;
+  border: 1px solid red;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.6), inset 0 0 5px rgba(255, 0, 0, 0.4),
+    0 2px 0 #000;
+    font-size: 2vw;
+    color: red;
+    z-index: 11;
+
 }
 
 .headerItem {
   background-color: black;
   height: 2.5vw;
+  border-radius: 5vw;
+  border: 1px solid greenyellow;
+  box-shadow: 0 0 5px rgba(173, 255, 47, 0.6),
+    inset 0 0 5px rgba(173, 255, 47, 0.4), 0 2px 0 #000;
 }
 
 .headerItem.timer {
-    width: 10vw;
+  width: 10vw;
 }
 
 .headerItem.smiley {
-    width: 5vw;
-    font-size: 2em;
+  width: 5vw;
+  font-size: 2em;
+  cursor: pointer;
 }
 
 .headerItem.mineCount {
-    width: 10vw;
+  width: 10vw;
 }
 
 .modalBackground {
@@ -111,3 +257,12 @@ h1 {
   font-size: 2em;
 }
 
+/* .square.mine::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-color: red;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6),
+  inset 0 0 10px rgba(255, 0, 0, 0.4), 0 2px 0 #000;
+} */

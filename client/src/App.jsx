@@ -22,7 +22,7 @@ const App = () => {
       payload: mineCount,
     });
     dispatch({
-      type: "INCREMENT_MINES_LEFT",
+      type: "SET_MINES_LEFT",
       payload: mineCount,
     });
     setScreen("gameplay");
@@ -30,11 +30,16 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>Minesweeper</h1>
+      <h1
+        onClick={() => setScreen("setup")}
+        className={`gameTitle ${screen === "setup" ? "big" : ""}`}
+      >
+        Aliensweeper
+      </h1>
       {screen === "setup" ? (
         <SetupScreen startGame={startGame} />
       ) : (
-        <GameplayScreen setScreen={setScreen}/>
+        <GameplayScreen setScreen={setScreen} />
       )}
     </div>
   );

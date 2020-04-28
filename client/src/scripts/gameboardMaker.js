@@ -6,6 +6,7 @@ class Gameboard {
     this.height = size;
     this.mineCount = mineCount;
     this.mines = {};
+    this.hiddenSquares = this.squareCount;
 
     for (let s = 1; s <= this.squareCount; s++) {
       this.squares.push({
@@ -24,7 +25,6 @@ class Gameboard {
 
     this.squares.forEach((square) => {
       this.addBorders(square);
-      console.log(`Square ${square.id} borders: `, square.borders);
     });
 
     this.squares.forEach((square) => {
@@ -140,6 +140,7 @@ class Gameboard {
   reveal(s, flagIncrement) {
     if (!s.visible) {
       s.visible = true;
+      this.hiddenSquares--;
       if (s.flagged) flagIncrement += this.flag(s.id);
       if (s.borderMines > 0) return flagIncrement;
       for (let border in s.borders) {
@@ -151,7 +152,10 @@ class Gameboard {
   }
 
   checkForWin() {
-    return Object.values(this.mines).filter((m) => m === "armed").length === 0;
+    return (
+      Object.values(this.mines).filter((m) => m === "armed").length === 0 ||
+      this.hiddenSquares === this.mineCount
+    );
   }
 
   revealAll() {

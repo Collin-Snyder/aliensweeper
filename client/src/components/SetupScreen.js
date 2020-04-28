@@ -44,7 +44,7 @@ const SetupScreen = ({ startGame }) => {
           <br></br>
           
         </form>
-        <button onClick={submitGameInfo}>Start Game</button> 
+        <div className="button" onClick={submitGameInfo}>Start Game</div> 
       </div>
     </div>
   );
