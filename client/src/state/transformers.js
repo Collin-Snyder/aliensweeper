@@ -6,25 +6,25 @@ const updateBoard = (state, action) => {
 
 const setBoardSize = (state, action) => {
   let newState = { ...state };
-  newState.size = action.payload;
+  newState.size = parseInt(action.payload);
   return newState;
 };
 
 const setMineCount = (state, action) => {
   let newState = { ...state };
-  newState.mineCount = action.payload;
+  newState.mineCount = parseInt(action.payload);
   return newState;
 };
 
 const incrementMinesLeft = (state, action) => {
   let newState = { ...state };
-  newState.minesLeft += action.payload;
+  newState.minesLeft += parseInt(action.payload);
   return newState;
 };
 
 const setMinesLeft = (state, action) => {
   let newState = { ...state };
-  newState.minesLeft = action.payload;
+  newState.minesLeft = parseInt(action.payload);
   return newState;
 };
 

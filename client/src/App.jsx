@@ -11,7 +11,7 @@ const App = () => {
 
   const startGame = (boardSize, mineCount) => {
     console.log("startGame running");
-    let squares = makeBoard(boardSize, mineCount);
+    let squares = makeBoard(parseInt(boardSize), parseInt(mineCount));
     dispatch({
       type: "UPDATE_BOARD",
       payload: squares,

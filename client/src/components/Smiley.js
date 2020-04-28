@@ -10,7 +10,10 @@ const Smiley = () => {
   const startNewGame = () => {
     dispatch({ type: "RESET" });
     setTimer(0);
-    let squares = makeBoard(gameState.size, gameState.mineCount);
+    let squares = makeBoard(
+      parseInt(gameState.size),
+      parseInt(gameState.mineCount)
+    );
     dispatch({
       type: "UPDATE_BOARD",
       payload: squares,

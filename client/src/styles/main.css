@@ -17,10 +17,6 @@ h1 {
 
 .board {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  /* width: 35vw;
-  height: 35vw; */
 }
 
 .gameHeader {
@@ -41,8 +37,8 @@ h1 {
 }
 
 .square {
-    width: 3.5vw;
-    height: 3.5vw;
+    /* width: 3.5vw;
+    height: 3.5vw; */
     position: relative;
 }
 

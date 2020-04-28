@@ -24,6 +24,7 @@ class Gameboard {
 
     this.squares.forEach((square) => {
       this.addBorders(square);
+      console.log(`Square ${square.id} borders: `, square.borders);
     });
 
     this.squares.forEach((square) => {
@@ -50,7 +51,7 @@ class Gameboard {
     this.click = this.click.bind(this);
     this.flag = this.flag.bind(this);
     this.reveal = this.reveal.bind(this);
-   }
+  }
 
   addBorders(square) {
     square.borders = {
@@ -142,7 +143,8 @@ class Gameboard {
       if (s.flagged) flagIncrement += this.flag(s.id);
       if (s.borderMines > 0) return flagIncrement;
       for (let border in s.borders) {
-        if (s.borders[border]) flagIncrement = this.reveal(s.borders[border], flagIncrement);
+        if (s.borders[border])
+          flagIncrement = this.reveal(s.borders[border], flagIncrement);
       }
     }
     return flagIncrement;

@@ -26,7 +26,13 @@ const Board = memo(() => {
   };
 
   return (
-    <div className="board">
+    <div
+      className="board"
+      style={{
+        "gridTemplateColumns": `repeat(${gameState.size}, 1fr)`,
+        "gridTemplateRows": `repeat(${gameState.size}, 1fr)`,
+      }}
+    >
       {gameState.squares.map((square) => (
         <Square
           id={square.id}
@@ -36,6 +42,7 @@ const Board = memo(() => {
           handleFlag={handleFlag}
           visible={square.visible}
           flagged={square.flagged}
+          boardSize={gameState.size}
           key={square.id}
         />
       ))}
