@@ -29,7 +29,7 @@ const Square = memo(
       >
         {visible ? (
           <h3 className={mine ? "mine" : ""}>
-            {mine ? "X" : borderMines ? borderMines : ""}
+            {mine ? "👽" : borderMines ? borderMines : ""}
           </h3>
         ) : flagged ? (
           <>

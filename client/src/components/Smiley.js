@@ -27,10 +27,10 @@ const Smiley = () => {
   return (
     <div className="headerItem smiley" onClick={startNewGame}>
       {gameState.gameOutcome === "pending"
-        ? "☺︎"
+        ? "🙂"
         : gameState.gameOutcome === "win"
         ? "😎"
-        : "☹︎"}
+        : "😵"}
     </div>
   );
 };
