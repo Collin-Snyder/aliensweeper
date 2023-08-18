@@ -7,6 +7,7 @@
     "start": "node ./server/index.js",
     "server-dev": "nodemon ./server/index.js",
     "react-dev": "webpack -d --watch",
+    "build": "npm install && webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
