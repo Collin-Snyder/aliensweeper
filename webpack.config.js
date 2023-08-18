@@ -1,9 +1,16 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 module.exports = {
   entry: __dirname + "/client/src/index.jsx",
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "client/src/index.html",
+    }),
+  ],
   module: {
     rules: [
       {
-        test: [/\.jsx$|\.js$|\.html$/],
+        test: [/\.jsx$|\.js$/],
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -12,6 +19,10 @@ module.exports = {
             plugins: ["@babel/plugin-proposal-nullish-coalescing-operator"],
           },
         },
+      },
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
       },
       {
         test: [/\.css$|\.scss$|\.sass$/],
@@ -26,6 +37,6 @@ module.exports = {
   },
   output: {
     filename: "bundle.js",
-    path: __dirname + "/client/dist",
+    path: __dirname + "/public",
   },
 };
