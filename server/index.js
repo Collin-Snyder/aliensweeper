@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 const port = process.env.PORT || 3000;
-const html = require(path.join(__dirname + "/../client/dist/index.html"));
+const html = require("../client/dist/index.html");
 
 const app = express();
 
